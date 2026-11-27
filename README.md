@@ -30,8 +30,6 @@ O Cofrinho é uma aplicação web para acompanhar metas de economia (por exemplo
 | CI/CD | GitHub Actions (Linux, macOS e Windows) |
 | Produção | Render (plano gratuito) + gunicorn |
 
-A lógica de negócio fica em `app/dominio/` como funções puras, o que facilita testar o comportamento pela API pública.
-
 
 
 ## Execução dos testes
