@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}Meta não encontrada | Cofrinho{% endblock %}
+{% block conteudo %}
+<section class="nova">
+  <h2>Meta não encontrada</h2>
+  <p>Essa meta não existe mais. Ela pode ter sido removida.</p>
+  <a class="link" href="{{ url_for('metas.index') }}">Voltar para suas metas</a>
+</section>
+{% endblock %}
