@@ -1,1 +1,1 @@
-tests/integration/__init__.py
+"""Testes de integração do Cofrinho."""
