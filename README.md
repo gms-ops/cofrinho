@@ -1,7 +1,5 @@
 # Cofrinho
 
-- **Sistema em produção:** [https://cofrinho-mzcs.onrender.com](https://cofrinho-mzcs.onrender.com/)
-
 ## Feito por Gabriele Maria Silva
 
 
