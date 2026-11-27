@@ -32,3 +32,9 @@ jobs:
           files: ./coverage.xml
           flags: ${{ matrix.os }}
           fail_ci_if_error: false
+
+      - name: Instalar navegador do Playwright
+        run: python -m playwright install --with-deps chromium
+
+      - name: Testes ponta a ponta (e2e)
+        run: pytest tests/e2e
