@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="layout">
+  <section class="nova" aria-labelledby="titulo-nova">
+    <h2 id="titulo-nova">Nova meta</h2>
+    <form method="post" action="{{ url_for('metas.criar') }}" novalidate>
+      <label for="nome">Nome da meta</label>
+      <input id="nome" name="nome" type="text" autocomplete="off" placeholder="Viagem">
+      <label for="alvo">Valor-alvo (R$)</label>
+      <input id="alvo" name="alvo" type="text" inputmode="decimal" autocomplete="off" placeholder="1000,00">
+      <label for="prazo">Prazo</label>
+      <input id="prazo" name="prazo" type="date">
+      <button type="submit">Criar meta</button>
+    </form>
+  </section>
+
+  <section class="lista" aria-labelledby="titulo-lista">
+    <div class="cabecalho-lista">
+      <h2 id="titulo-lista">Suas metas</h2>
+      <p class="total">Total guardado: <strong>{{ total|moeda }}</strong></p>
+    </div>
+
+    <form class="filtros" method="get" action="{{ url_for('metas.index') }}">
+      <div><label for="q">Buscar por nome</label>
+        <input id="q" name="q" type="search" value="{{ q }}"></div>
+      <div><label for="status">Situação</label>
+        <select id="status" name="status">
+          <option value="todas" {{ 'selected' if status == 'todas' }}>Todas</option>
+          <option value="andamento" {{ 'selected' if status == 'andamento' }}>Em andamento</option>
+          <option value="concluidas" {{ 'selected' if status == 'concluidas' }}>Alcançadas</option>
+        </select></div>
+      <div><label for="ordem">Ordenar por</label>
+        <select id="ordem" name="ordem">
+          <option value="prazo" {{ 'selected' if ordem == 'prazo' }}>Prazo</option>
+          <option value="nome" {{ 'selected' if ordem == 'nome' }}>Nome</option>
+          <option value="progresso" {{ 'selected' if ordem == 'progresso' }}>Progresso</option>
+        </select></div>
+      <button type="submit" class="secundario">Aplicar</button>
+    </form>
+
+    {% for r in resumos %}
+    <article class="meta{{ ' meta-ok' if r.meta.concluida }}" aria-label="Meta {{ r.meta.nome }}">
+      <header>
+        <h3>{{ r.meta.nome }}</h3>
+        {% if r.meta.concluida %}<span class="selo selo-ok">Meta alcançada</span>
+        {% elif r.atrasada %}<span class="selo selo-atraso">Prazo vencido</span>{% endif %}
+      </header>
+      <p class="valores">{{ r.meta.saldo|moeda }} de {{ r.meta.alvo|moeda }}</p>
+      <div class="barra" role="progressbar" aria-label="Progresso de {{ r.meta.nome }}"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ '%g'|format(r.progresso) }}">
+        <div class="barra-cheia" style="width: {{ r.progresso }}%"></div>
+      </div>
+      <p class="progresso">{{ r.progresso|percentual }}</p>
+      <p class="detalhe">Prazo: {{ r.meta.prazo|data }}</p>
+      {% if not r.meta.concluida %}
+      <p class="detalhe">Faltam {{ r.faltante|moeda }}. Guarde {{ r.mensalidade|moeda }} por mês durante {{ r.meses }} {{ 'mês' if r.meses == 1 else 'meses' }}.</p>
+      {% endif %}
+      <div class="acoes">
+        <form method="post" action="{{ url_for('metas.fazer_deposito', meta_id=r.meta.id) }}" novalidate>
+          <input name="valor" type="text" inputmode="decimal" autocomplete="off" aria-label="Valor para depositar" placeholder="0,00">
+          <button type="submit">Depositar</button>
+        </form>
+        <form method="post" action="{{ url_for('metas.fazer_retirada', meta_id=r.meta.id) }}" novalidate>
+          <input name="valor" type="text" inputmode="decimal" autocomplete="off" aria-label="Valor para retirar" placeholder="0,00">
+          <button type="submit" class="secundario">Retirar</button>
+        </form>
+        <a class="link" href="{{ url_for('metas.editar', meta_id=r.meta.id) }}">Editar</a>
+        <form method="post" action="{{ url_for('metas.remover', meta_id=r.meta.id) }}">
+          <button type="submit" class="perigo">Remover</button>
+        </form>
+      </div>
+    </article>
+    {% else %}
+    <p class="vazio">Nenhuma meta por aqui. Crie a primeira no formulário ao lado.</p>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}
