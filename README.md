@@ -1,15 +1,11 @@
 # Cofrinho
 
-[![CI](https://github.com/SEU-USUARIO/cofrinho/actions/workflows/ci.yml/badge.svg)](https://github.com/SEU-USUARIO/cofrinho/actions)
-[![codecov](https://codecov.io/gh/SEU-USUARIO/cofrinho/graph/badge.svg)](https://codecov.io/gh/SEU-USUARIO/cofrinho)
 
 - **Sistema em produção:** https://SEU-APP.onrender.com
 - **Vídeo de apresentação:** https://youtu.be/SEU-VIDEO
 
-## Integrantes
+## Feito por Gabriele Maria Silva
 
-- Nome completo do integrante 1
-- Nome completo do integrante 2
 
 ## Sobre o sistema
 
@@ -36,13 +32,7 @@ O Cofrinho é uma aplicação web para acompanhar metas de economia (por exemplo
 
 A lógica de negócio fica em `app/dominio/` como funções puras, o que facilita testar o comportamento pela API pública.
 
-## Uso de IA
 
-> Preencham com a realidade do grupo.
-
-- **Ferramenta:** Claude (Anthropic).
-- **Para quê:** proposta de arquitetura, geração inicial do código e dos testes, configuração do CI.
-- **O que o grupo revisou/alterou:** (descrevam aqui o que vocês leram, modificaram, corrigiram e entenderam).
 
 ## Execução dos testes
 
