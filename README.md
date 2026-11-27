@@ -48,4 +48,4 @@ Para rodar a aplicação localmente: `flask --app app run`.
 
 ## Deploy
 
-O site é publicado no Render a cada push na branch `main`. No plano gratuito o disco é temporário, então os dados podem ser apagados quando o serviço reinicia.
+O site é publicado no Render a cada push na branch `main`. No plano gratuito o disco é temporário, então os dados são apagados quando o serviço reinicia.
