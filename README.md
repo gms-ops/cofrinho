@@ -2,7 +2,6 @@
 
 
 - **Sistema em produção:** [https://cofrinho-mzcs.onrender.com](https://cofrinho-mzcs.onrender.com/)
-- **Vídeo de apresentação:** 
 
 ## Feito por Gabriele Maria Silva
 
