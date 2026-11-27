@@ -1,8 +1,8 @@
 # Cofrinho
 
 
-- **Sistema em produção:** https://SEU-APP.onrender.com
-- **Vídeo de apresentação:** https://youtu.be/SEU-VIDEO
+- **Sistema em produção:** [https://cofrinho-mzcs.onrender.com](https://cofrinho-mzcs.onrender.com/)
+- **Vídeo de apresentação:** 
 
 ## Feito por Gabriele Maria Silva
 
@@ -22,13 +22,15 @@ O Cofrinho é uma aplicação web para acompanhar metas de economia (por exemplo
 | Uso | Ferramenta |
 |---|---|
 | Linguagem e servidor web | Python 3.12 + Flask |
-| Interface | Templates Jinja2 e CSS próprio (sem framework) |
+| Interface | Templates Jinja2 e CSS próprio |
 | Persistência | Arquivo JSON |
 | Testes de unidade e integração | pytest |
-| Cobertura | pytest-cov (Coverage.py) + Codecov |
+| Cobertura | pytest-cov (Coverage.py) e Codecov |
 | Testes ponta a ponta | Playwright (pytest-playwright) |
 | CI/CD | GitHub Actions (Linux, macOS e Windows) |
-| Produção | Render (plano gratuito) + gunicorn |
+| Produção | Render (plano gratuito) e gunicorn |
+
+A lógica de negócio fica em `app/dominio/`, como funções puras, o que facilita testar o comportamento pela API pública.
 
 
 
@@ -39,8 +41,8 @@ python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
 
-pytest                             # unidade + integração
-pytest --cov=app --cov-branch --cov-report=term-missing   # com cobertura (mínimo 80%)
+pytest                             # unidade e integração
+pytest --cov=app --cov-branch --cov-report=term-missing   # com cobertura
 
 python -m playwright install chromium
 pytest tests/e2e                   # ponta a ponta
@@ -50,4 +52,4 @@ Para rodar a aplicação localmente: `flask --app app run`.
 
 ## Deploy
 
-O `render.yaml` descreve o serviço. No Render: *New → Blueprint* e selecione o repositório. Observação: o disco do plano gratuito é efêmero, então os dados podem ser apagados quando o serviço reinicia.
+O site é publicado no Render a cada push na branch `main`. No plano gratuito o disco é temporário, então os dados podem ser apagados quando o serviço reinicia.
