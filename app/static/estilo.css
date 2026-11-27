@@ -1,0 +1,87 @@
+:root {
+  --tinta: #16282d;
+  --tinta-suave: #4a5f64;
+  --fundo: #e8eeeb;
+  --superficie: #ffffff;
+  --linha: #c5d2cd;
+  --verde: #17695c;
+  --verde-escuro: #0f4d43;
+  --moeda: #e3a52c;
+  --alerta: #a63a2b;
+  --alerta-fundo: #f8e4e0;
+  --ok-fundo: #dcefe9;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--tinta);
+  font: 400 1rem/1.5 "Bricolage Grotesque", system-ui, "Segoe UI", sans-serif;
+}
+.topo { padding: 1.25rem clamp(1rem, 4vw, 3rem); }
+.marca { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; color: var(--verde-escuro); text-decoration: none; }
+main { max-width: 68rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 3rem) 4rem; }
+h2 { font-size: 1.25rem; margin: 0 0 1rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; margin: 0; }
+
+.layout { display: grid; gap: 2rem; grid-template-columns: 18rem 1fr; align-items: start; }
+@media (max-width: 52rem) { .layout { grid-template-columns: 1fr; } }
+
+.nova { background: var(--superficie); border: 1px solid var(--linha); border-radius: 0.75rem; padding: 1.25rem; }
+.nova form { display: grid; gap: 0.35rem; }
+.nova.editar { max-width: 26rem; }
+
+label { font-weight: 600; font-size: 0.9rem; }
+input, select {
+  width: 100%; padding: 0.55rem 0.7rem; margin-bottom: 0.6rem;
+  border: 1px solid var(--linha); border-radius: 0.5rem;
+  font: inherit; background: #fff; color: inherit;
+}
+button, .link { font: inherit; }
+button {
+  padding: 0.55rem 1rem; border: 0; border-radius: 0.5rem; cursor: pointer;
+  background: var(--verde); color: #fff; font-weight: 600;
+}
+button:hover { background: var(--verde-escuro); }
+button.secundario { background: var(--superficie); color: var(--verde-escuro); border: 1px solid var(--verde); }
+button.secundario:hover { background: var(--ok-fundo); }
+button.perigo { background: var(--superficie); color: var(--alerta); border: 1px solid var(--alerta); }
+button.perigo:hover { background: var(--alerta-fundo); }
+.link { color: var(--verde-escuro); font-weight: 600; align-self: center; }
+:focus-visible { outline: 3px solid var(--moeda); outline-offset: 2px; }
+
+.aviso { max-width: 68rem; margin: 0 0 1.25rem; padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600; }
+.aviso-ok { background: var(--ok-fundo); color: var(--verde-escuro); }
+.aviso-erro { background: var(--alerta-fundo); color: var(--alerta); }
+
+.cabecalho-lista { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.cabecalho-lista h2 { margin: 0; }
+.total { margin: 0; color: var(--tinta-suave); }
+.total strong { color: var(--tinta); }
+.filtros { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: end; margin: 1rem 0 1.25rem; }
+.filtros > div { flex: 1 1 9rem; }
+.filtros input, .filtros select { margin-bottom: 0; }
+
+.meta { background: var(--superficie); border: 1px solid var(--linha); border-radius: 0.75rem; padding: 1.1rem 1.25rem; margin-bottom: 1rem; }
+.meta header { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+.meta p { margin: 0.25rem 0; }
+.valores { font-weight: 600; }
+.detalhe { color: var(--tinta-suave); font-size: 0.92rem; }
+.progresso { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; }
+.selo { padding: 0.15rem 0.6rem; border-radius: 99px; font-size: 0.82rem; font-weight: 600; }
+.selo-ok { background: var(--moeda); color: var(--tinta); }
+.selo-atraso { background: var(--alerta-fundo); color: var(--alerta); }
+
+.barra {
+  height: 1.4rem; margin: 0.6rem 0 0.25rem; border-radius: 99px; overflow: hidden;
+  background: var(--fundo);
+  background-image: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), var(--linha) calc(25% - 1px) 25%);
+  border: 1px solid var(--linha);
+}
+.barra-cheia { height: 100%; background: var(--moeda); border-radius: 99px 0 0 99px; }
+.meta-ok .barra-cheia { border-radius: 99px; }
+
+.acoes { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.9rem; align-items: center; }
+.acoes form { display: flex; gap: 0.4rem; }
+.acoes input { width: 6.5rem; margin: 0; }
+.vazio { padding: 2rem 1rem; text-align: center; color: var(--tinta-suave); border: 1px dashed var(--linha); border-radius: 0.75rem; }
